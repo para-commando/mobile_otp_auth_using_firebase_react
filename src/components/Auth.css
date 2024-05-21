@@ -1,0 +1,40 @@
+.verifyOtpSection {
+    display: none;
+}
+
+h1 {
+    font-size: 60px;
+}
+
+.sendOtpSection {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+}
+
+.sendOtpSection input {
+    border-radius: 10px;
+    height: 55px;
+    width: 290px;
+    font-size: 30px;
+    text-align: center;
+}
+
+.sendOtpSection button {
+    height: 35px;
+    width: 120px;
+    border-radius: 20px;
+    font-size: 15px;
+    background-color: green;
+    color: white;
+    font-weight: 700;
+}
+
+.sendOtpSection button:hover {
+
+    background-color: rgb(4, 65, 4);
+    cursor: pointer;
+}
