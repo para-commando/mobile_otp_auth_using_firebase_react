@@ -9,8 +9,12 @@ function Auth() {
   const recaptchaRef = useRef(null);
   const verifyOtpSectionRef = useRef(null);
   const sendOtpSectionRef = useRef(null);
-
+  const otpSuccessDisplayRef = useRef(null);
+  const headingRef = useRef(null);
+  const authOtpSectionRefButton = useRef(null);
+ 
   const handleSendOtp = () => {
+    authOtpSectionRefButton.current.style.cursor = 'progress';
     if (recaptchaRef.current) {
       recaptchaRef.current.innerHTML = '<div id="recaptcha-container"> </div>';
       const verifier = new firebase.auth.RecaptchaVerifier(
@@ -23,16 +27,21 @@ function Auth() {
         .then((confirmationResult) => {
           setverificationNumber(confirmationResult.verificationId);
           alert('OTP sent successfully');
-          verifyOtpSectionRef.current.style.display='block';
-
+          verifyOtpSectionRef.current.style.display = 'flex';
+          sendOtpSectionRef.current.style.display = 'none';
+          authOtpSectionRefButton.current.style.cursor = 'pointer';
         })
         .catch((err) => {
           console.log('🚀 ~ handleSendOtp ~ err:', err);
+          alert('Something went wrong, please try again');
+          authOtpSectionRefButton.current.style.cursor = 'pointer';
         });
     }
   };
 
   const handleVerifyOtp = () => {
+    authOtpSectionRefButton.current.style.cursor = 'progress';
+
     const creds = firebase.auth.PhoneAuthProvider.credential(
       verificationNumber,
       verificationCode
@@ -45,19 +54,29 @@ function Auth() {
           '🚀 ~ firebase.auth ~ JSON.stringify(userCredential)}:',
           JSON.stringify(userCredential)
         );
-        alert(
-          `Otp verified successfully for the user ${JSON.stringify(
-            userCredential
-          )}`
-        );
+        verifyOtpSectionRef.current.style.display = 'none';
+        sendOtpSectionRef.current.style.display = 'none';
+        otpSuccessDisplayRef.current.style.display = 'block';
+        authOtpSectionRefButton.current.style.cursor = 'pointer';
       })
       .catch((err) => {
+        alert('Something went wrong, please try again');
         console.log('🚀 ~ firebase.auth ~ err:', err);
+        authOtpSectionRefButton.current.style.cursor = 'pointer';
       });
   };
+
+  const VerifyAnotherOtp = () => {
+    otpSuccessDisplayRef.current.style.display = 'none';
+    sendOtpSectionRef.current.style.display = 'flex';
+    verifyOtpSectionRef.current.style.display = 'none';
+    headingRef.current.style.display = 'block';
+
+  };
+ 
   return (
-    <div>
-      <h1>mobile otp authentication</h1>
+    <div ref={authOtpSectionRefButton}>
+      <h1 ref={headingRef}>mobile otp authentication</h1>
       <div ref={recaptchaRef}></div>
       <div className='sendOtpSection' ref={sendOtpSectionRef}>
         <input
@@ -68,9 +87,14 @@ function Auth() {
             setMobileNumber(e.target.value);
           }}
         />
-        <button onClick={handleSendOtp}>Send OTP</button>
+        <button onClick={handleSendOtp}>
+          Send OTP
+        </button>
+        <div className="sendingOtpAlertText">
+          Verifying mobile number and Sending OTP ...
+        </div>
       </div>
-
+      
       <div className='verifyOtpSection' ref={verifyOtpSectionRef}>
         <input
           type='text'
@@ -78,7 +102,14 @@ function Auth() {
           value={verificationCode}
           onChange={(e) => setverificationCode(e.target.value)}
         />
-        <button onClick={handleVerifyOtp}>Verify OTP</button>
+        <button  onClick={handleVerifyOtp}>Verify OTP</button>
+      </div>
+
+      <div className='otpSuccessDisplay' ref={otpSuccessDisplayRef}>
+        <p>OTP verified successfully !</p>
+        <button  onClick={VerifyAnotherOtp}>
+          Send OTP for another number
+        </button>
       </div>
     </div>
   );
