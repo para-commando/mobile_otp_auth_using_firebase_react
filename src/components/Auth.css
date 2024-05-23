@@ -1,0 +1,106 @@
+ .verifyOtpSection {
+     display: none;
+     flex-direction: column;
+     gap: 10px;
+     justify-content: center;
+     align-items: center;
+     padding: 40px;
+ }
+
+ .verifyOtpSection input {
+     border-radius: 10px;
+     height: 55px;
+     width: 290px;
+     font-size: 30px;
+     text-align: center;
+ }
+
+ .verifyOtpSection button {
+     height: 35px;
+     width: 120px;
+     border-radius: 20px;
+     font-size: 15px;
+     background-color: rgb(230, 124, 4);
+     color: white;
+     font-weight: 700;
+ }
+
+ .verifyOtpSection button:hover {
+
+     background-color: rgb(134, 61, 5);
+     cursor: pointer;
+
+ }
+
+ h1 {
+     font-size: 60px;
+ }
+
+ .sendOtpSection {
+     display: flex;
+     flex-direction: column;
+     gap: 10px;
+     justify-content: center;
+     align-items: center;
+     padding: 40px;
+ }
+
+ .sendOtpSection input {
+     border-radius: 10px;
+     height: 55px;
+     width: 290px;
+     font-size: 30px;
+     text-align: center;
+ }
+
+ .sendOtpSection button {
+     height: 35px;
+     width: 120px;
+     border-radius: 20px;
+     font-size: 15px;
+     background-color: green;
+     color: white;
+     font-weight: 700;
+ }
+
+ .sendOtpSection button:hover {
+
+     background-color: rgb(4, 65, 4);
+      cursor: pointer;
+ }
+
+ .otpSuccessDisplay {
+     display: none;
+ }
+
+ .otpSuccessDisplay p {
+     font-size: 30px;
+     font-weight: 600;
+     color: darkgreen;
+     padding: 50px
+ }
+
+
+
+ .otpSuccessDisplay button {
+     height: 55px;
+     width: 300px;
+     border-radius: 20px;
+     font-size: 15px;
+     background-color: rgb(175, 149, 5);
+     color: white;
+     font-weight: 700;
+ }
+
+ .otpSuccessDisplay button:hover {
+
+     background-color: rgb(47, 121, 47);
+     cursor: pointer;
+ }
+
+.sendingOtpAlertText{
+    display: none;
+}
+.verifyingOtpAlertText{
+    display: none;
+}
