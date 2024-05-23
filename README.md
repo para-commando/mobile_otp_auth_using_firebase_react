@@ -27,3 +27,32 @@ This project is about triggering OTP to the entered mobile number using **fireba
 ## otp verifcation failure
 
 ![image](https://github.com/para-commando/mobile_otp_auth_using_firebase_react/assets/123434846/51f39c0b-bfda-4c32-ace7-ea4d154e5682)
+
+
+Steps to setup:
+
+1. clone the repository
+
+```
+git clone git@github.com:para-commando/mobile_otp_auth_using_firebase_react.git
+```
+
+2. navigate to this repo
+```
+cd mobile_otp_auth_using_firebase_react
+```
+
+3. install the dependencies
+```
+npm i
+```
+
+4. Get the firebase credentials and add it in the .env.local file which needs to be created in the root of this repo with the exact key names defined in the file firebase.jsx
+
+   
+5. host this project in your local
+```
+npm run dev
+```
+
+Note: Refer attached screenshots for input data refernce
